@@ -1,8 +1,8 @@
 # Node-js
 
-##### [Node.js 기초](#node.js-기초)
+##### [Node.js 기초](#Node.js -기초)
 
-##### [Node.js의 특징](#node.js의-특징)
+##### [Node.js 특징](#Node.js -특징)
 
 ---
 
@@ -94,5 +94,5 @@ javascript에서는 함수는 구문이면서 동시에 값이다. 이를 이용
 
 ---
 
-### Node.js의 특징
+### Node.js 특징
 
