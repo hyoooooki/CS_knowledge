@@ -2,9 +2,9 @@
 
 **목차**
 
-##### [Node.js 기초](#node.js-%EA%B8%B0%EC%B4%88)
+[1. Node.js 기초](#node.js-%EA%B8%B0%EC%B4%88)
 
-##### [Node.js 특징](#node.js-%ED%8A%B9%EC%A7%95)
+[2. Node.js 특징](#node.js-%ED%8A%B9%EC%A7%95)
 
 
 
