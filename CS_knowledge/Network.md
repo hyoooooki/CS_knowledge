@@ -14,7 +14,7 @@
 - [GET, POST](#get,post)
 - [ARP 프로토콜(주소 결정 프로토콜)](#arp-protocol)
 - [프록시 서버](#proxy-server)
-- [브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정](#browser-redering)
+- [브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정](#browser-rendering)
 - [Multi-Thread 서버](#multi-thread-server)
 
 ---
