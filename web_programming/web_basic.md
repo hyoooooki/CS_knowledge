@@ -85,7 +85,7 @@
   - **장점** : 불특정 다수를 대상으로하는 서비스에 적합함. 계속적으로 연결된 상태가 아니기에 최대 연결 수보다 훨씬 많은 요청과 응답을 처리할 수 있음.
   - **단점** : 연결을 끊기에 클라이언트의 이전상황을 알 수 없음. 이러한 특징을 무상태(stateless)라고 함. 정보유지를 위해서 쿠키라는 개념도입.
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/http.png">
+<img src="./assets/http.png">
 
 
 
@@ -142,19 +142,19 @@ https의 경우 보안이 강화된 http통신을 의미하며, 통신시 인증
 
 <browser component>
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/browser.png">
+<img src="./assets/browser.png">
 
 
 
 <browser flow>
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/browser_flow.png">
+<img src="./assets/browser_flow.png">
 
 
 
 <예시 - 사파리 브라우저에서 처리되는 webkit 렌더링 엔진의 처리과정>
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/browser_main.png">
+<img src="./assets/browser_main.png">
 
 
 
@@ -199,7 +199,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 - 웹 브라우저나 웹 크롤러가 요청하는 리소스는 컴퓨터에 저장되어 있는 정적인 데이터이거나 동적인 결과가 될 수 있다.
 - **웹크롤러** : 네이버나 구글 같은 포털에서 다른 웹사이트 정보를 읽어갈 때 사용하는 소프트웨어
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/web_server.png">
+<img src="./assets/web_server.png">
 
 
 
@@ -224,7 +224,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 
 서버 - 요청된 서비스에 대한 처리를 하고 제공하는 대상
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/c_s.png">
+<img src="./assets/c_s.png">
 
 
 
@@ -234,7 +234,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 
 - 개발자들이 매우 편리하게 데이터를 관리할 수 있게 되었음.
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/d_s.png">
+<img src="./assets/d_s.png">
 
 **미들웨어**
 
@@ -242,7 +242,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 - 클라이언트 쪽에 비즈니스 로직이 많을 경우, 클라이언트 관리 비용이 증가하는 문제 발생.
   => 미들웨어를 통해 클라이언트는 입,출력만 담당하면 된다.
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/mw.png">
+<img src="./assets/mw.png">
 
 
 
@@ -261,7 +261,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 4. 웹서버의 기능도 제공
    (was tomcat만 설치하여 사용 가능한 이유)
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/was.png">
+<img src="./assets/was.png">
 
 **웹서버, was의 차이점**
 
@@ -272,7 +272,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
   무중단 운영이 매우 중요해지는 경우에 특히 이렇게 구조화 해야함.
 - 보통 웹서버를 먼저 위치시키고 그 뒤에 was를 위치시킨다.
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/was_web.png">
+<img src="./assets/was_web.png">
 
 ---
 
@@ -286,7 +286,7 @@ reference : https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 
 **layout태그**
 
-<img src ="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/htmp_layout.png"> 
+<img src ="./assets/htmp_layout.png"> 
 
 
 
@@ -480,7 +480,7 @@ red - value
 - WAS에 설치되어 동작하는 어플리케이션
 - 자바 웹 어플리케이션에는 HTML,CSS,이미지,자바로 작성된 클래스(Servlet,package,인터페이스 등),각종 설정 파일 등이 포함된다.
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/jwa.png">
+<img src="./assets/jwa.png">
 
 
 
@@ -506,7 +506,7 @@ red - value
 
 **Servlet의 생명주기**
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/servlet_life.png">
+<img src="./assets/servlet_life.png">
 
 1. WAS는 서블릿 요청이 들어오면 메모리에 있는지 확인.
 2. 메모리가 없을 시 init() 메소드 실행
@@ -526,7 +526,7 @@ red - value
 
 **request & response**
 
-<img src="C:/Users/Pink_HYOKI/Google 드라이브(학습)/스터디자료/web-programming/assets/res_req.png">
+<img src="./assets/res_req.png">
 
 WAS는 웹 브라우저로부터 Servlet요청을 받으면
 
