@@ -9,13 +9,13 @@
 - [OSI 7계층](#OSI-7%EA%B3%84%EC%B8%B5)
 - [TCP/IP 플로토콜 스택 4계층](#tcp/ip-protocol)
 - [TCP/IP 특징](#tcp/ip-specific)
-- [주요포트 번호](#important port num)
+- [주요포트 번호](#important-port-num)
 - [HTTP, HTTPS](#http,https)
 - [GET, POST](#get,post)
-- [ARP 프로토콜(주소 결정 프로토콜)](#arp protocol)
-- [프록시 서버](#proxy server)
-- [브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정](#browser redering)
-- [Multi-Thread 서버](#multi thread server)
+- [ARP 프로토콜(주소 결정 프로토콜)](#arp-protocol)
+- [프록시 서버](#proxy-server)
+- [브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정](#browser-redering)
+- [Multi-Thread 서버](#multi-thread-server)
 
 ---
 
@@ -217,7 +217,7 @@
 
 
 
-#### <a name = "important port num"> 주요포트 번호</a>
+#### <a name = "important-port-num"> 주요포트 번호</a>
 
 - HTTP(80) : 웹을 지원하기 위한 프로토콜, GET,PUT 같은 프로토콜 기능을 포함해 웹 서버에게 어떠한 Content를 요청하고 또는 웹 서버로 정보를 보내는 역할을 수행 (HTTPS(443))
 - FTP(20,21) : TCP를 활용해 대량의 파일을 송수신하는 프로토콜
@@ -229,7 +229,7 @@
 
 
 
-####<a name = "http,https"> HTTP, HTTPS</a>
+#### <a name = "http,https"> HTTP, HTTPS</a>
 
 - 웹 브라우저와 휍 서버 사이의 데이터 통신 규칙
 - 웹 페이지의 링크를 클릭하면 브라우저는 HTTP요청 형식에 따라 웹 서버에 데이터를 전송, 웹 서버는 브라우저가 보낸 데이터를 분석하여 요청을 처리 후 응답
@@ -253,14 +253,14 @@
 
 
 
-#### <a name = "arp protocol"> ARP 프로토콜(주소 결정 프로토콜)</a>
+#### <a name = "arp-protocol"> ARP 프로토콜(주소 결정 프로토콜)</a>
 
 - 네트워크 상에서 IP주소를 물리적 네트워크 주소로 대응시키기 위해 사용되는 프로토콜.
 - IP(3계층) -> MAC(2계층)으로 대응시킬 때 사용.
 
 
 
-#### <a name = "proxy server"> 프록시 서버</a>
+#### <a name = "proxy-server"> 프록시 서버</a>
 
 - 컴퓨터 네트워크에서 다른 서버 사으이 자원을 찾는 클라이언트로부터 요청을 받아 중계하는 서버. 
 - 요청된 자원들이 캐시로 임시 저장된다. 이후 재요청을 하게 되면 원격서버에 접속할 필요 없이 프록시 서버 내의 정보를 제공 받음.
@@ -269,7 +269,7 @@
 
 
 
-#### <a name = "browser rendering"> 브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정</a>
+#### <a name = "browser-rendering"> 브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정</a>
 
 1. local DNS서버에서 해당 주소의 IP주소를 찾는다. 있다면 즉시 ip를 받아온다.
 
@@ -299,7 +299,7 @@
 
 
 
-#### <a name = "multi thread server">Multi-Thread 서버</a>
+#### <a name = "multi-thread-server">Multi-Thread 서버</a>
 
 1. listen socket을 통해 클라이언트가 들어오면 자식 프로세스를 만드는 것이 아닌 쓰레드를 만드는 것.
 2. 만들어진 쓰레드를 이용해 클라이언트의 요청을 처리하는 것
