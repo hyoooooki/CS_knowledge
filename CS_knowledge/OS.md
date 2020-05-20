@@ -195,7 +195,6 @@ ___
 
 3. device queue : I/O device를 위한 프로세스 집합, 디바이스 컨트롤러에 위치
 
-
 **장기스케줄러(Long-term scheduler or job scheduler)**
 
 ​	메모리는 한정되어 있는데 많은 프로세스들이 한꺼번에 메모리에 올라올 경우, 대용량 메모	리(일반적으로 디스크)에 임시로 저장된다. 이 pool 에 저장되어 있는 프로세스 중 어떤 프로	세스에 메모리를 할당하여 ready queue 로 보낼지 결정하는 역할을 한다.
@@ -412,6 +411,21 @@ _cf) 메모리에 프로그램이 너무 많이 올라가도, 너무 적게 올�
 ​	=> 전역변수라도 쓰레드들이 각각 다른 값은 assign하게 해준다.
 
 ​	=> 공유된 변수라 하더라도 쓰레드마다 처리하는 값은 다를 수 있다.
+
+
+
+**프로세스 쓰레드의 차이와 장단점**
+
+- **멀티 쓰레드**
+  - 멀티쓰레드로 실행하게 되면 프로세스를 생성하여 자원을 할당하는 과정도 줄어들 뿐더러 프로세스를 컨텍스트 스위칭을 하는 것보다 오버헤드를 줄일 수 있음.
+  - 자원을 많이 공유하는 경우라면 훨씬 용이하게 사용가능. 
+  - 디버깅이 어려움. 충돌문제가 발생할 수 있음.
+  - 문제 발생 시 전체 프로세스가 영향을 받음.
+- **멀티 프로세스**
+  - 안정성이 높음. 누구 하나 문제가 생긴다고 전체가 영향을 받지는 않음.
+  - 각각 독립된 영역을 가지고 있어 컨텍스트 스위칭으로 인한 오버헤드가 크다.
+
+
 
 
 ## Scheduling
@@ -1286,13 +1300,13 @@ ds:[rax], ss:[rbp-8]처럼 세그먼트 레지스터 표기와 함께 있다.
 <br>
 <h3>세그먼트 레지스터</h3>
 아래는 64bit intel 환경에서 디버깅창에서 볼 수 있는 레지스터 화면이다.
-<image src="/assets/x64 registers.PNG" width="70%">
+<img src="./assets/x64 registers.PNG" width="70%">
 
 사진에서 맨 아래에 있는 6개의 \*s로 끝나는 레지스터들이 세그먼트 레지스터다.
 
 저 중 cs, ds, ss가 각각 code, data, stack 세그먼트에 대한 정보를 저장하고 있는 **세그먼트 레지스터**다.
 
-<image src="/assets/segment register.png" width="50%">
+<img src="./assets/segment register.png" width="50%">
 
 세그먼트 레지스터는 위 사진처럼 x86기준 16bit 정보를 저장하고있다. 저장하고 있는 정보는 kernel 이 가지고 있는 **GDT**(**global descriptor table**)이나 LDT(local descriptor table)에 저장된 해당 세그먼트 descriptor가 저장된 index 번호와 RPL(request privilege level) 정보를 저장하고 있다.
 
@@ -1301,7 +1315,7 @@ ds:[rax], ss:[rbp-8]처럼 세그먼트 레지스터 표기와 함께 있다.
 RPL은 현재 코드에서 요청하는 특권 모드를 나타내며, 인터럽트 발생시 cs 레지스터 내용은 발생하는 인터럽트 종류에 따라 OS 부팅 시 등록된 trap gate(page fault 등) 혹은 interrupt gate (division by zero 등) 에 등록된 code segement selector 내용으로 바뀌고, ss 레지스터 내용은 OS 부팅 시 초기화한 tss(task state segment) 구조체를 가리키는 tr 레지스터를 통해 ss 멤버 변수를 참조하여 RPL 0의 stack segment selector 내용으로 바꾸게 된다.
 
 <h3>세그먼트 디스크립터</h3>
-<image src="/assets/segment descriptor.png">
+<img src="/assets/segment descriptor.png">
 
 앞서 설명한 세그먼트 레지스터에 저장된 세그먼트 셀렉터가 GDT 혹은 LDT에 저장된 세그먼트 디스크립터를 가리킨다고 했는데, 위의 그림처럼 복잡하게 생겼다.
 
