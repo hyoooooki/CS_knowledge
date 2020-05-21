@@ -46,7 +46,7 @@
 **Blockchain**
 
 - block은 여러 개의 트랜잭션을 포함하고 있다.
-- 노드는 block을 생서하고 추가할 수 있으며 broadcast한다.
+- 노드는 block을 생성하고 추가할 수 있으며 broadcast한다.
 - 다른 노드들은 정당성을 체크하고 수용한다.
 - 요소 : 이전 블럭의 hash, Timestamp, transaction data
 - 만약 정보가 임의로 수정되면 hash값이 변경되어 정당하지 않은 것으로 판정되므로 불가하다.
@@ -233,7 +233,7 @@
 
 **Transaction(트랜잭션)**
 
-- EOA가 보낼 메시지를 가지고 있는 서며된 데이터 패키지.
+- EOA가 보낼 메시지를 가지고 있는 서명된 데이터 패키지.
 - 구성요소
   - nonce : 보내진 transaction의 갯수를 카운트 한것.
   - gasprice : 매 단계마다 지불하는 수수료
@@ -377,13 +377,15 @@
    - client가 검증 후 ordering service에 transaction 전송
    - 다른 application에서 들어온 transaction도 함께 처리할 수 있다.
 5. **Deliver transaction**
-   - ordering service가 끝난후 생성된 block들을 다른 모든 peer에게 broadcast한다.
-
+   
+- ordering service가 끝난후 생성된 block들을 다른 모든 peer에게 broadcast한다.
+   
 6. **validate transaction**
    - committing peer가 데이터가 유효한지를 다시 한번 판단한다.
    - valid transaction은 world state와 ledger에 모두 저장.
    - invalid transaction은 ledger에만 저장한다.
 7. **notify transaction**
+   
    - 트랜잭션이 수행된 결과에 대해서 client(application)에게 전달한다.
 
 

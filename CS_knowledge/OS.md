@@ -150,7 +150,7 @@ ___
   4. heap 영역 : 동적변수 등
   5. PC(program counter) , register
 
-<img src="/assets/memory.png">
+<img src="./assets/memory.png">
 
 
 
@@ -162,7 +162,7 @@ ___
 4. ready : CPU를 할당 받기 위해 대기
 5. terminate : 실행 종료
 
-<img src="/assets/process state.png">
+<img src="./assets/process state.png">
 
 
 
@@ -334,7 +334,7 @@ _cf) 메모리에 프로그램이 너무 많이 올라가도, 너무 적게 올�
 
  3. files
 
-  <img src="/assets/thread struct.png">
+  <img src="./assets/thread struct.png">
 
 
 
