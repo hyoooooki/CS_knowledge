@@ -2,7 +2,7 @@
 
 ---
 
-### **목차**
+## **목차**
 
 - [개요](#basic)
 - [OSI 7계층](#OSI-7%EA%B3%84%EC%B8%B5)
@@ -21,7 +21,7 @@
 
 ---
 
-### <a name = "basic"> 개요</a>
+## <a name = "basic"> 개요</a>
 
 **용어정리**
 
@@ -41,7 +41,7 @@
 
 
 
-### OSI 7계층
+## OSI 7계층
 
 **네트워크에서 통신이 이루어지는 과정을 7단계로 나눈 것**
 
@@ -177,7 +177,7 @@
 
 
 
-#### <a name = "tcp/ip-protocol">TCP/IP 플로토콜 스택 4계층</a>
+### <a name = "tcp/ip-protocol">TCP/IP 플로토콜 스택 4계층</a>
 
 <img src="./assets/TCP_IP.PNG">
 
@@ -202,7 +202,7 @@
 
 
 
-#### <a name = "tcp/ip-specific"> TCP/IP 특징</a>
+### <a name = "tcp/ip-specific"> TCP/IP 특징</a>
 
 - 오늘날 인터넷 통신의 대부분은 패킷 통신을 기본으로 함.
 - 패킷 통신을 위한 인터넷 규약
@@ -212,14 +212,14 @@
 
 
 
-#### 네트워크 망
+### 네트워크 망
 
 - LAN : 한 지역적 공간의 호스트들 끼리 연결되어 있는 소규모 네트워크
 - WAN : LAN-LAN의 연결하는 대규모 네트워크
 
 
 
-#### <a name = "important-port-num"> 주요포트 번호</a>
+### <a name = "important-port-num"> 주요포트 번호</a>
 
 - HTTP(80) : 웹을 지원하기 위한 프로토콜, GET,PUT 같은 프로토콜 기능을 포함해 웹 서버에게 어떠한 Content를 요청하고 또는 웹 서버로 정보를 보내는 역할을 수행 (HTTPS(443))
 - FTP(20,21) : TCP를 활용해 대량의 파일을 송수신하는 프로토콜
@@ -231,7 +231,7 @@
 
   
 
-#### <a name = "http,https"> HTTP, HTTPS</a>
+### <a name = "http,https"> HTTP, HTTPS</a>
 
 - 웹 브라우저와 휍 서버 사이의 데이터 통신 규칙
 - 웹 페이지의 링크를 클릭하면 브라우저는 HTTP요청 형식에 따라 웹 서버에 데이터를 전송, 웹 서버는 브라우저가 보낸 데이터를 분석하여 요청을 처리 후 응답
@@ -256,7 +256,7 @@
 
 
 
-#### <a name = "get,post"> GET, POST</a>
+### <a name = "get,post"> GET, POST</a>
 
 - HTTP프로토콜을 이용해서 서버에 요청할 때 사용. 
 - GET 
@@ -270,14 +270,14 @@
 
 
 
-#### <a name = "arp-protocol"> ARP 프로토콜(주소 결정 프로토콜)</a>
+### <a name = "arp-protocol"> ARP 프로토콜(주소 결정 프로토콜)</a>
 
 - 네트워크 상에서 IP주소를 물리적 네트워크 주소로 대응시키기 위해 사용되는 프로토콜.
 - IP(3계층) -> MAC(2계층)으로 대응시킬 때 사용.
 
 
 
-#### <a name = "proxy-server"> 프록시 서버</a>
+### <a name = "proxy-server"> 프록시 서버</a>
 
 - 컴퓨터 네트워크에서 다른 서버 상의 자원을 찾는 클라이언트로부터 요청을 받아 중계하는 서버. 
 - 요청된 자원들이 캐시로 임시 저장된다. 이후 재요청을 하게 되면 원격서버에 접속할 필요 없이 프록시 서버 내의 정보를 제공 받음.
@@ -286,7 +286,7 @@
 
 
 
-#### <a name = "browser-rendering"> 브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정</a>
+### <a name = "browser-rendering"> 브라우저에서 특정 주소를 입력하였을 때 렌더링 되는 과정</a>
 
 1. **DNS를 통해 도메인을 아이피로 바꾼다. 이때 DNS서버는 (Local - Root - TLD ...등을 거치면 알아낸다.)**
 2. **ARP를 이용해 IP와 MAC주소 획득(이는 IP를 이용해 물리적인 네트워크 주소를 알아낸것.)**
@@ -301,7 +301,7 @@
 
 
 
-#### <a name = "multi-thread-server">Multi-Thread 서버</a>
+### <a name = "multi-thread-server">Multi-Thread 서버</a>
 
 1. listen socket을 통해 클라이언트가 들어오면 자식 프로세스를 만드는 것이 아닌 쓰레드를 만드는 것.
 2. 만들어진 쓰레드를 이용해 클라이언트의 요청을 처리하는 것
@@ -309,7 +309,7 @@
 
 
 
-#### <a name = "cookie,session">쿠키,세션 </a>
+### <a name = "cookie,session">쿠키,세션 </a>
 
 **쿠키과 세션을 사용하는 이유**
 
@@ -381,7 +381,7 @@
 
 
 
-### <a name = "server-scale">서버확장방법</a>
+## <a name = "server-scale">서버확장방법</a>
 
 1. **scale up  **
    - 서버의 성능을 높이는 것임.
@@ -435,7 +435,7 @@
 
 
 
-### <a name = "ssl">SSL </a>
+## <a name = "ssl">SSL </a>
 
 - Secure Socket Layer
 
