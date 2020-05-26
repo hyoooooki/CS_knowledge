@@ -7,6 +7,9 @@
    - [Ethereum](#ethereum)
    - [Hyperledger Fabric](#hyperledger)
    - [BFT](#bft)
+2. [**Distributed System**](#distributed-system)
+   - [Intro](#intro)
+   - [Architecture](#architecture)
 
 ---
 
@@ -379,7 +382,7 @@
 5. **Deliver transaction**
    
 - ordering service가 끝난후 생성된 block들을 다른 모든 peer에게 broadcast한다.
-   
+  
 6. **validate transaction**
    - committing peer가 데이터가 유효한지를 다시 한번 판단한다.
    - valid transaction은 world state와 ledger에 모두 저장.
@@ -459,6 +462,209 @@
     - crash : f+1
     - byzantine : 2f+1
 
+<br>
+
+<br>
+
+# <a name="distributed-system"> Distributed System</a>
+
+## <a name="intro"> Intro</a>
+
+**분산컴퓨팅은 독립적인 컴퓨터들이 모여서 일관성있는 모임이 되는 것이다.**
+
+<br>
+
+**특징**
+
+- 각기 다른 컴퓨터들이 모여서 작업하는 것을 user에게 감춘다.
+- user와 application은 이 시스템과 일관된 방법으로 상호작용한다.
+- 상대적으로 expand와 scale이 쉽다.
+  - expand : 기능의 확장(scale up)
+  - scale : 규모면의 확장(scale out)
+- 미들웨어 : 각각 다른 머신 별 OS차이로 발생하는 것을 미들웨어가 변환하여 application에게 같은 interface를 제공할 수 있도록 한다.
+
+
+
+**목표**
+
+- user와 resource가 쉽게 연결되도록한다.
+- 직접 연결된 것들이 보이지 않도록한다.(하나의 시스템처럼 보이게)
+- support opennes(규정, 규격등을 준수한다면 누구든 참여가능)
+- be scalable
+  - 규모적 측면
+  - 지역적인 측면
+  - 관리적인 측면
+
+
+
+**Transparency**
+
+1. access : 데이터에 어떻게 접근하는지 숨겨줌.
+2. location : 데이터의 위치를 숨겨줌.
+3. migration : 자원의 위치가 바뀌어도 정상 작동. (이동 여부를 모름)
+4. relocation : 사용하는 동안 옮겨도 숨겨줌.
+5. replication : 복제품을 만들어 (performance, availability)
+6. concurrency : 몇몇 사용자들로부터 동시 사용되도 숨겨준다.
+7. failure : resource의 실패와 회복을 숨겨준다.
+
+
+
+**Three basic techiniques for scaling**
+
+- hiding communication lantencies : async기법을 활용해 communication lantency를 숨김.
+- distribution : 각각의 서버의 기능을 분산해 놓는다.
+- replication : availability를 증가시켜주진 못하지만, performance를 향상시킨다. 그러나 한번에 업데이트하기가 어렵다.
+
+
+
+**transaction**
+
+- atomic한 명령단위
+- 다양한 명령이 하나의 트랜잭션으로 발생된다.
+- ACID
+  - Atomic : 트랜잭션 한 단위로 일이 이루어져야한다.
+  - Consistent : 트랜잭션에 따른 결과는 언제나 같아야한다.
+  - Isolated : 독립적으로 실행된다. 다른 것의 간섭을 받지 않음.
+  - Durable : 한번 commit되면 변화는 유지된다.
+
+
+
+#### ## <a name = "architecture"> Architecture</a>
+
+**layered architecture**
+
+- component들이 layer로 구성되어있고 하나의 layer단계를 넘어서 콜한다.
+- ex) TCP socket연결과정.
+  <img src="./assets/layered.png">
+
+<br>
+
+**object-based architecture**
+
+- 각각의 object들은 어떠한 component들을 정의하고 있는지에 따라 상응한다.
+
+- RPC를 이용해 method를 call한다.
+
+  
+
+  <img src="./assets/object_based.png">
+
+
+
+<br>
+
+**Data-centered architecture**
+
+- 중앙 repository의 데이터를 각 client들이 사용하는 구조이다.
+
+<img src="./assets/data_centered_architecture.jpg">
+
+<br>
+
+**Event-based architecture**
+
+- event 전파를 통해 communication한다.
+- broadcast할 수도 선별적으로 multicast할 수도 있다.
+- ex>publish/subscribe system
+
+
+
+![image-20200526234438888](C:\Users\Pink_HYOKI\Google 드라이브(학습)\CS_INFO\cs_knowledge\CS_knowledge\assets\event_based.png)
+
+<br>
+
+**Shared data space**
+
+- event-based와 data-centric이  합쳐진 형태이다.
+- 통신하는 프로세스가 모두 active될 필요는 없다.
+
+<img src="./assets/shared-data.png">
+
+<br>
+
+**Two-Tiered Architecture**
+
+- client와 sever부분을 나눈것
+  1. 원격제어
+  2. web searching
+  3. scaling technique
+  4. sql programming
+  5. web browser, local cache
+
+![image-20200527001936833](C:\Users\Pink_HYOKI\Google 드라이브(학습)\CS_INFO\cs_knowledge\CS_knowledge\assets\two-tiered.png)
+
+<br>
+
+**Decentralize Architecture**
+
+1. vertical distribution
+   - 기능들을 분할하는 것.
+   - 각각의 머신들이 각기 다른 기능을 수행하는 그룹을 이룬다.
+   - 다른 파트가 생기므로 scale up이다.
+2. Horizontal distribution
+   - 동일한 기능을 수행하는 것을 복제 분할.
+   - 같은 파트에 대해서 분할을 하게 되므로 scale out이다.
+3. Peer to Peer system
+   - horizontal의 예시이다.
+   - structured와 unstructured의 두가지 형태를 가진다.
+   - structured
+     - DHT-based system (Chord) : ring형태로 논리적으로 연결되어 있다.
+   - unstructured
+     - 잘알려진 노드로 부터 이웃노드 리스트를 받아서 시작함.
+     - peer를 연결할 때에 NRU와 같이 사용안되는 peer들부터 교체하는 방식을 주로 사용한다.
+
+4. superpeers
+
+   - superpeer들은 하나의 그룹을 형성하고 잇으며 이는 cetralized.
+
+   - superpeer간의 관계는 peer to peer로 decentralized
+
+     ![image-20200527003857014](C:\Users\Pink_HYOKI\Google 드라이브(학습)\CS_INFO\cs_knowledge\CS_knowledge\assets\super_peer.png)
+
+<br>
+
+**Client/Server Architecture**
+
+- powerful한 node가 server의 역할을 한다.
+- client는 sever에게 데이터를 요청한다.
+- 매우 성공적인 모델 (HTTP, FTP, Web services)
+- 한계점
+  - server가 처리할 수 있는 request가 한계가 있음.
+  - 만약 server에 문제가 생기면 전체 시스템에 영향을 끼침.
+  - client의 자원은 낭비하는 형태이다.
+
+
+
+**Peer to Peer Model**
+
+- server와 client가 하나의 노드에서 모두 수행된다.
+- **client가 늘어나면 server도 늘어나는 효과가 았는 것**
+- **장점**
+  - Efficient use of resources : 사용안되는 자원이 없다.
+  - Scalability : 서버와 클라이언트가 동시에 확장되는 것.
+  - reliability : 동일한 역할을 해주는 것들이 존재하기에 하나가 죽어도 상관 없다.
+  - ease of administration : 중앙 관리자가 아닌 각 노드들이 관리해야하므로 관리가 편리함.
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
 
 
 reference
@@ -467,3 +673,4 @@ reference
 2. https://banksalad.com/contents/
 3. https://brownbears.tistory.com/385
 4. https://simsimjae.tistory.com/229
+5. https://www.tutorialspoint.com/software_architecture_design/data_centered_architecture.htm
