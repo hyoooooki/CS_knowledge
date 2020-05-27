@@ -10,6 +10,7 @@
 2. [**Distributed System**](#distributed-system)
    - [Intro](#intro)
    - [Architecture](#architecture)
+   - [Communication](#communication)
 
 ---
 
@@ -638,13 +639,192 @@
 **Peer to Peer Model**
 
 - server와 client가 하나의 노드에서 모두 수행된다.
+
 - **client가 늘어나면 server도 늘어나는 효과가 았는 것**
+
 - **장점**
+
   - Efficient use of resources : 사용안되는 자원이 없다.
   - Scalability : 서버와 클라이언트가 동시에 확장되는 것.
   - reliability : 동일한 역할을 해주는 것들이 존재하기에 하나가 죽어도 상관 없다.
-  - ease of administration : 중앙 관리자가 아닌 각 노드들이 관리해야하므로 관리가 편리함.
-- 
+  - easy of administration : 중앙 관리자가 아닌 각 노드들이 관리해야하므로 관리가 편리함.
+
+- indexing server에 따른 구분
+
+  - centralized
+  - decentralized
+  - hybrid
+
+- overlay network 구조에 따른 구분
+
+  - unstructured
+  - structured
+
+  <img src="./assets/p2p_class.png">
+
+
+
+- Napster
+
+  - 중앙에 indexing server가 있어 원하는 파일의 위치의 ip를 알려주는 역할을 함.
+  - 장점
+    - 간단하다
+    - search : O(1)
+    - control하기 편하다.
+  - 단점
+    - 서버는 O(n)상태를 유지해야함.
+    - 서버가 모든 일을 다 처리
+    - 만약 서버가 죽으면 전체 시스템에 문제.
+
+  <br>
+
+- Gnutella
+
+  - 파일을 요청할 때 연결된 주변 노드들에게 전파시키며 위치를 찾고 파일을 받아온다.
+  - 장점
+    - 완전한 탈중앙화
+    - search cost를 분산한다.
+  - 단점
+    - search cost : O(N)
+    - search time : O(N)
+    - 만약 노드가 참여를 하지 않으면 unstable해진다.
+
+  <br>
+
+- KaZaA
+
+  - 슈퍼노드들을 기준으로 중앙화된 그룹이 있다.
+  - 파일 요청이 오면 슈퍼노드들끼리 search를 진행하여 파일을 찾고 받아온다.
+  - 중앙화와 탈중앙화의 특징을 모두 갖추고 있다.
+
+<br>
+
+- DHT(distributed hash table)
+  - object의 hash값과 가장 가까운 거리의 id를 가지는 노드에 object를 저장.
+  - 만약 중간에 더 가까운 노드가 들어오면 데이터의 위치가 바뀐다.
+  - 노드들끼리 decentralized로 연결되어 있음.
+
+<br>
+
+- Chord Protocol
+  - hash를 사용해서 node의 위치를 결정하고 object를 hash해서 해당 값보다 높은 위치에 있는 가장 가까운 노드에 해당 object를 mapping 시킨다.
+  - 위의 방법으로 모든 데이터의 위치가 결정되 후 search를 하면 순차 탐색이므로 효율성이 떨어지는 문제가 있다.
+  - 위의 문제를 해결하기 위해서 finger table을 도입
+  - n+2^(i-1)순으로 탐색을 진행한다. 해당 위치에서 가장 가까운 노드를 기준으로 한다.
+  - 그러나 노드의 안정성이 떨어지기에 잘 사용되지는 않는다.
+
+<br>
+
+**BitTorrent**
+
+- file의 chunk를 노드들이 가지고 있으며 이러한 chunk들을 여러 노드들에게 받아 file을 완성하는 것.
+- no strong guarntee : 노드들이 chunk를 안가지고 있을 확률이 존재하기에 보장하지 못한다.
+- 각 노드간에 chunk유무를 기록한 bitmap을 교환함으로써 필요한 chunk를 받아온다.
+- 구성요소
+  - web server : web server를 이용해 토렌트 파일을 찾는다.
+  - .torrent file : name, size, checksum(size를 해싱해 정상 파일 여부를 확인) , **tracker의 ip와 port**
+  - tracker : random하게 active한 peer들의 리스트를 반환한다
+  - peers 
+    - downloader : 파일의 일부분을 가지고 있는 peer
+    - seeder : 완전한 파일을 가지고 있는 peer
+
+- chunk 
+  - 파일을 분할하는 단위, 보통 256kb
+  - 각각의 peer들은 어떠한 chunk를 가지고 있는지 bitmap으로 가지고 있다.
+  - 가장 희귀한 chunk부터 먼저 받도록 되어있다. (병목현상 제거, peer가 네트워크를 떠나도 chunk유지 가능.)
+  - 보통 4-5개의 연결을 유지하고 만약에 chunk교환이 없으면 그 노드를 버리고 새로운 노드를 연결한다.
+
+
+
+## <a name = "communication"> Communication </a>
+
+**IPC - inter process communication**
+
+
+
+**persistent communication**
+
+- sender는 전송하고 멈출 수 있고 receiver가 꼭 active할 필요는 없다.
+- buffer에 메세지가 쌓인다.
+
+**transient communication**
+
+- receiver가 실행중일 때 message를 보낼 수 있다. 
+- 만약 동작중 문제가 생기면 그냥 메세지는 삭제.
+
+**async communication**
+
+- sender가 메세지를 보낸 후 바로 다른 일을 할 수 있다.
+
+**sync communication**
+
+- sender가 response가 올 때가지 block, waiting해야한다.
+
+<br>
+
+**RPC - remote procedure call**
+
+- 분산 네트워크 컴퓨터 환경에서 프로그래밍을 쉽게 할 수 있도록 도와줌.
+- 클라이언트 - 서버간의 커뮤니케이션에 필요한 상세한 정보는 최대한 감춘다.
+- 클라이언트와 서버거 모두 active해야한다.
+- 클라이언트와 서버가 local method를 사용하는 것처럼 호출할 수 있다.
+- IDL형식으로 변환하는 이유는 각각의 노드마다 데이터 타입과 메모리 저장방식등이 다르기 때문에 변환하여 전송함으로 각 노드에 맞게 사용할 수 있도록 한다.
+- 구성요소
+  - caller/callee : 사용자가 필요한 비즈니스 로직을 IDL로 작성
+  - stub : IDL을 읽어 원하는 language로 생성, marshalling/unmarshalling을 한다.
+  - RPC Runtime : server와 client를 binding함.
+- 과정
+  - client가 원하는 데이터를 IDL로 인코딩하여 server에 요청한다.
+  - sever는 IDL필터로 디코딩하여 작업을 실행한다.
+  - 실행 후 결과를 IDL로 인코딩해서 보낸다.
+  - 클라이언트가 IDL 디코딩하고 결과를 처리한다.
+- 장점
+  - 비즈니스 로직에 집중할 수 있음.
+  - 다양한 언어를 가진 환경에서 쉽게 확장 가능
+  - 쉽게 인터페이스 협업 가능
+- 단점
+  - 새로운 학습 비용이 든다.
+  - 사람의 눈으로 읽기 힘듬.
+
+<img src="./assets/RPC.png">
+
+<br>
+
+**message queue**
+
+- **메세지 지향 미들웨어(MOM)** :  비동기 메세지를 사용하는 다른 응용 프로그램 사이에서 데이터 송수신을 의미
+- client와 server가 모두 active할 필요는 없다.
+- MOM을 구현한 시스템이 메세지 큐라고 한다.
+- 장점
+  - asynchronous : queue에 저장하기 때문에 나중에 처리 가능.
+  - decoupling : 애플리케이션과 분리할 수 있음.
+  - resilience : 일부가 실패 시 전체에 영향을 주지는 않음.
+  - redundancy : 실패할 경우 지실행 가능.
+  - guarantee : 작업이 처리된걸 확인 가능.
+  - scalable : 다수이 프로세스들이 큐에 메세지를 보낼 수 있음.
+- 사용처
+  - 다른 곳은 API로부터 데이터 송수신가능.
+  - 다양한 애플리케이션에서 비동기 통신 가능.
+  - 이메일 발송 및 문서 업로드 가능.
+  - 많은 양의 프로세스들을 처리할 수 있음.
+
+<br>
+
+**Epidemic protocol**
+
+- 정보들을 모든 노드들에게 빠르게 퍼트리고 싶어 생겨난 프로토콜
+
+- 주위의 노드들을 감염시켜가며 퍼트려가는 것
+
+- 상태
+
+  - infective : 다른애들을 감염시키는 애들.
+  - susceptible : 감염되기 전.
+  - removed : 감염만 되고 다른 애들에게 전파X
+
+- 보통 PULL방식을을 주로 이용함. (전파가 됨에 따라 전파 확률이 점점 올라감.)
+
+  
 
 
 
@@ -674,3 +854,5 @@ reference
 3. https://brownbears.tistory.com/385
 4. https://simsimjae.tistory.com/229
 5. https://www.tutorialspoint.com/software_architecture_design/data_centered_architecture.htm
+6. https://12bme.tistory.com/176
+7. https://leejonggun.tistory.com/9
